@@ -1,6 +1,15 @@
+##copy the downloaded and unzipped data directory "UCI HAR Dataset" into your
+#working directory before running this script.  The raw data is read from there.
+#for convenience, the finished tidy data will be written to same directory.
+if(!require(data.table)) {
+        install.packages("data.table")
+}
 
+if(!require(dplyr)) {
+        install.packages("dplyr")
+}
 
-labelFeatures<- read.table("./data/features.txt")  ##Reads in the labels, as 
+labelFeatures<- read.table("./UCI HAR Dataset/features.txt")  ##Reads in the labels, as 
 #column 2 of the observations in X_train.txt and X_test.txt
 
 labelFeatures$V2 <- gsub("\\(\\)", "",labelFeatures$V2)   #Remove, from the 
@@ -8,13 +17,13 @@ labelFeatures$V2 <- gsub("\\(\\)", "",labelFeatures$V2)   #Remove, from the
 labelFeatures$V2 <- gsub("-", "_",labelFeatures$V2)  ##Also replace hyphens
 #with underscores to prevent future problems with summarizing on field names.
 
-subj_id_test <- read.table("./data/test/subject_test.txt")  ##Reads in the 
+subj_id_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")  ##Reads in the 
 #Subject ID's for observations in X_test.txt
 
-act_lbls_test <- read.table("./data/test/y_test.txt")  ##Reads in Activity type
+act_lbls_test <- read.table("./UCI HAR Dataset/test/y_test.txt")  ##Reads in Activity type
 #observed for each obs in x_test.txt
 
-obs_x_test <- read.table("./data/test/x_test.txt")  ##Reads in the 2947 obs of
+obs_x_test <- read.table("./UCI HAR Dataset/test/x_test.txt")  ##Reads in the 2947 obs of
 #x-test.txt
 
 colnames(obs_x_test) = labelFeatures[,2]  ##Assigns labels from column 2 to 
@@ -29,11 +38,11 @@ names(obs_w_id_act_test)[1:2]<- c("subjectID", "Activity") ##Add descriptive
 
 ###Do the same thing with "train" set:
 
-subj_id_train <- read.table("./data/train/subject_train.txt")
+subj_id_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 
-act_lbls_train <- read.table("./data/train/y_train.txt")
+act_lbls_train <- read.table("./UCI HAR Dataset/train/y_train.txt")
 
-obs_x_train <- read.table("./data/train/x_train.txt")
+obs_x_train <- read.table("./UCI HAR Dataset/train/x_train.txt")
 
 colnames(obs_x_train) = labelFeatures[,2]  
 
@@ -64,7 +73,7 @@ tidy_data1 <- select(comb_data_86bandsE, subjectID, Activity, contains("_mean"),
 #wide instead of 68.
 
 ### Read in the Labels for Activity Codes to data frame.
-labelActivites<- read.table("./data/activity_labels.txt")
+labelActivites<- read.table("./UCI HAR Dataset/activity_labels.txt")
 
 tidy_data1$Activity <- labelActivites[,2][match(tidy_data1$Activity, 
                                                 labelActivites[,1])]  ##Replace
@@ -74,7 +83,7 @@ tidy_data1$Activity <- labelActivites[,2][match(tidy_data1$Activity,
 ###ColMeans 0.274347261 Mean   : 0.2743
 
 
-write.table(tidy_data1,"./data/project_tidydata_means_stds")  ##rite to file
+write.table(tidy_data1,"./UCI HAR Dataset/project_tidydata_means_stds")  ##rite to file
 #the tidy data set complete through step 4.
 
 gbSubjACtvty <- group_by(tidy_data1,subjectID,Activity)  ##Groups by Subject 
@@ -84,5 +93,5 @@ sum_gbSubjActvty <- summarise_each(gbSubjACtvty, funs(mean), -subjectID,-Activit
 ##created a tidy table with the mean for each variable summarized by Subject
 #and Activity combinations.  Step 5.
 
-write.table(sum_gbSubjActvty,"./data/project_tidydata_summary")  ##rite to file
+write.table(sum_gbSubjActvty,"./UCI HAR Dataset/project_tidydata_summary")  ##rite to file
 #the tidy data set from step 5.
