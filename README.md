@@ -47,7 +47,7 @@ Applies Descriptive names to the first two columns.
 
 ###2)Extracts only the measurements on the mean and standard deviation for each measurement.  
 
-Subsets the data for features named with text ""BandsEngergy"" because they contain duplicate column names which obstruct our analysis and do not contains mean() or std() which we are looking for.
+Subsets the data for features named with text ""BandsEngergy"" because they contain duplicate column names which obstruct our analysis and do not contains mean() or std() which we are looking for.  
 Takes out the data causing problems using the subseted vector.  
 Selects columns we do want to include. We don't include columns with "Mean", e.g. "angle(tBodyAccJerkMean),gravityMean)" because these are all angles and not mean measurements. Decided to leave out "meanFreq()" components because this function was a **weighted** average of frequency components only, and not the 
 same as mean(). Otherwise data would have 81 columns instead of 68.  
@@ -68,7 +68,7 @@ Using summarise_each(), creates a tidy table with the mean for each variable sum
 Writes the resulting table to a file named "project_tidydata_summary.txt", to the working directory the tidy data set from step 5.  Submission instructions indicate use "row.name=FALSE"   
 
 
-###Note that the dataset created in "project_tidydata_summary.txt" represents the mean() of those observations for each unique Subject and Activity combination.
+####Note that the dataset created in "project_tidydata_summary.txt" represents the mean() of those observations for each unique Subject and Activity combination.
 
 ##Sources for Raw Data
 Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013.
