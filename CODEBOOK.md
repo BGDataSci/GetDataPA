@@ -10,7 +10,7 @@ output:
 ## Project Description
 This project was to take data a large complex data set available on line and 
 process it into tidy data for latter analysis.  The data was available online
-from the UCI Machine Learning Repository, http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+from the [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 The data was captured from 30 volunteers wearing a Samsung Galaxy S II on their waist and performing 6 different activities. 
 
 Our goals were to create one R script called run_analysis.R that does the following: 
@@ -21,9 +21,9 @@ Our goals were to create one R script called run_analysis.R that does the follow
 5.	From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
  
 ##Study design and data processing
- RStudio was used to load files downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-and unzipped.  The requisite files were placed into ./data directory.  R library tidyr and dplyr were used to help clean-up and tidy the data.
-Many of the original fields were eliminated because they were not measures of "mean()" or "Std()". Also characters were eliminated from column names that cuased problems
+RStudio was used to load files downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+and unzipped.  The requisite files were placed into ./data directory.  R library dplyr was used to help clean-up and tidy the data.
+Many of the original fields were eliminated because they were not measures of "mean()" or "std()". Also characters were eliminated from column names that caused problems
 with processing in R.  Some of the field names were so long that they showed up as duplicates in R.  These were eliminated to enable processing as they
 were not required for the data set we were looking for.
 
@@ -40,7 +40,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 
 Check the README.txt file for further details about this dataset. 
 
-A video of the experiment including an example of the 6 recorded activities with one of the participants can be seen in the following link: [Web Link]
+A video of the experiment including an example of the 6 recorded activities with one of the participants can be seen in the following link: [Web Link](http://www.youtube.com/watch?v=XOEN9W05_4A)
 
 
 Attribute Information:
@@ -208,72 +208,72 @@ General description of the file including:
  3rd Qu.:-0.6081         
  Max.   : 0.2878         
  
-<p>Original raw variable **tBodyAcc-mean()-X** was changed to **tBodyAcc_mean_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAcc-mean()-Y** was changed to **tBodyAcc_mean_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAcc-mean()-Z** was changed to **tBodyAcc_mean_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAcc-mean()-X** was changed to **tGravityAcc_mean_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAcc-mean()-Y** was changed to **tGravityAcc_mean_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAcc-mean()-Z** was changed to **tGravityAcc_mean_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerk-mean()-X** was changed to **tBodyAccJerk_mean_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerk-mean()-Y** was changed to **tBodyAccJerk_mean_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerk-mean()-Z** was changed to **tBodyAccJerk_mean_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyGyro-mean()-X** was changed to **tBodyGyro_mean_X**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyro-mean()-Y** was changed to **tBodyGyro_mean_Y**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyro-mean()-Z** was changed to **tBodyGyro_mean_Z**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerk-mean()-X** was changed to **tBodyGyroJerk_mean_X**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerk-mean()-Y** was changed to **tBodyGyroJerk_mean_Y**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerk-mean()-Z** was changed to **tBodyGyroJerk_mean_Z**, and is in radians per second<-p>
-<p>Original raw variable **tBodyAccMag-mean()** was changed to **tBodyAccMag_mean**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAccMag-mean()** was changed to **tGravityAccMag_mean**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerkMag-mean()** was changed to **tBodyAccJerkMag_mean**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyGyroMag-mean()** was changed to **tBodyGyroMag_mean**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerkMag-mean()** was changed to **tBodyGyroJerkMag_mean**, and is in radians per second<-p>
-<p>Original raw variable **fBodyAcc-mean()-X** was changed to **fBodyAcc_mean_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAcc-mean()-Y** was changed to **fBodyAcc_mean_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAcc-mean()-Z** was changed to **fBodyAcc_mean_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAccJerk-mean()-X** was changed to **fBodyAccJerk_mean_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAccJerk-mean()-Y** was changed to **fBodyAccJerk_mean_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAccJerk-mean()-Z** was changed to **fBodyAccJerk_mean_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyGyro-mean()-X** was changed to **fBodyGyro_mean_X**, and is in radians per second<-p>
-<p>Original raw variable **fBodyGyro-mean()-Y** was changed to **fBodyGyro_mean_Y**, and is in radians per second<-p>
-<p>Original raw variable **fBodyGyro-mean()-Z** was changed to **fBodyGyro_mean_Z**, and is in radians per second<-p>
-<p>Original raw variable **fBodyAccMag-mean()** was changed to **fBodyAccMag_mean**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyBodyAccJerkMag-mean()** was changed to **fBodyBodyAccJerkMag_mean**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyBodyGyroMag-mean()** was changed to **fBodyBodyGyroMag_mean**, and is in radians per second<-p>
-<p>Original raw variable **fBodyBodyGyroJerkMag-mean()** was changed to **fBodyBodyGyroJerkMag_mean**, and is in radians per second<-p>
-<p>Original raw variable **tBodyAcc-std()-X** was changed to **tBodyAcc_std_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAcc-std()-Y** was changed to **tBodyAcc_std_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAcc-std()-Z** was changed to **tBodyAcc_std_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAcc-std()-X** was changed to **tGravityAcc_std_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAcc-std()-Y** was changed to **tGravityAcc_std_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAcc-std()-Z** was changed to **tGravityAcc_std_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerk-std()-X** was changed to **tBodyAccJerk_std_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerk-std()-Y** was changed to **tBodyAccJerk_std_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerk-std()-Z** was changed to **tBodyAccJerk_std_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyGyro-std()-X** was changed to **tBodyGyro_std_X**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyro-std()-Y** was changed to **tBodyGyro_std_Y**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyro-std()-Z** was changed to **tBodyGyro_std_Z**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerk-std()-X** was changed to **tBodyGyroJerk_std_X**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerk-std()-Y** was changed to **tBodyGyroJerk_std_Y**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerk-std()-Z** was changed to **tBodyGyroJerk_std_Z**, and is in radians per second<-p>
-<p>Original raw variable **tBodyAccMag-std()** was changed to **tBodyAccMag_std**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tGravityAccMag-std()** was changed to **tGravityAccMag_std**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyAccJerkMag-std()** was changed to **tBodyAccJerkMag_std**, and is in g, standard gravity units<-p>
-<p>Original raw variable **tBodyGyroMag-std()** was changed to **tBodyGyroMag_std**, and is in radians per second<-p>
-<p>Original raw variable **tBodyGyroJerkMag-std()** was changed to **tBodyGyroJerkMag_std**, and is in radians per second<-p>
-<p>Original raw variable **fBodyAcc-std()-X** was changed to **fBodyAcc_std_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAcc-std()-Y** was changed to **fBodyAcc_std_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAcc-std()-Z** was changed to **fBodyAcc_std_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAccJerk-std()-X** was changed to **fBodyAccJerk_std_X**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAccJerk-std()-Y** was changed to **fBodyAccJerk_std_Y**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyAccJerk-std()-Z** was changed to **fBodyAccJerk_std_Z**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyGyro-std()-X** was changed to **fBodyGyro_std_X**, and is in radians per second<-p>
-<p>Original raw variable **fBodyGyro-std()-Y** was changed to **fBodyGyro_std_Y**, and is in radians per second<-p>
-<p>Original raw variable **fBodyGyro-std()-Z** was changed to **fBodyGyro_std_Z**, and is in radians per second<-p>
-<p>Original raw variable **fBodyAccMag-std()** was changed to **fBodyAccMag_std**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyBodyAccJerkMag-std()** was changed to **fBodyBodyAccJerkMag_std**, and is in g, standard gravity units<-p>
-<p>Original raw variable **fBodyBodyGyroMag-std()** was changed to **fBodyBodyGyroMag_std**, and is in radians per second<-p>
-<p>Original raw variable **fBodyBodyGyroJerkMag-std()** was changed to **fBodyBodyGyroJerkMag_std**, and is in radians per second<-p>
+<p>Original raw variable **tBodyAcc-mean()-X** was changed to **tBodyAcc_mean_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAcc-mean()-Y** was changed to **tBodyAcc_mean_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAcc-mean()-Z** was changed to **tBodyAcc_mean_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAcc-mean()-X** was changed to **tGravityAcc_mean_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAcc-mean()-Y** was changed to **tGravityAcc_mean_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAcc-mean()-Z** was changed to **tGravityAcc_mean_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerk-mean()-X** was changed to **tBodyAccJerk_mean_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerk-mean()-Y** was changed to **tBodyAccJerk_mean_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerk-mean()-Z** was changed to **tBodyAccJerk_mean_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyGyro-mean()-X** was changed to **tBodyGyro_mean_X**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyro-mean()-Y** was changed to **tBodyGyro_mean_Y**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyro-mean()-Z** was changed to **tBodyGyro_mean_Z**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerk-mean()-X** was changed to **tBodyGyroJerk_mean_X**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerk-mean()-Y** was changed to **tBodyGyroJerk_mean_Y**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerk-mean()-Z** was changed to **tBodyGyroJerk_mean_Z**, and is in radians per second</p>
+<p>Original raw variable **tBodyAccMag-mean()** was changed to **tBodyAccMag_mean**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAccMag-mean()** was changed to **tGravityAccMag_mean**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerkMag-mean()** was changed to **tBodyAccJerkMag_mean**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyGyroMag-mean()** was changed to **tBodyGyroMag_mean**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerkMag-mean()** was changed to **tBodyGyroJerkMag_mean**, and is in radians per second</p>
+<p>Original raw variable **fBodyAcc-mean()-X** was changed to **fBodyAcc_mean_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAcc-mean()-Y** was changed to **fBodyAcc_mean_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAcc-mean()-Z** was changed to **fBodyAcc_mean_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAccJerk-mean()-X** was changed to **fBodyAccJerk_mean_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAccJerk-mean()-Y** was changed to **fBodyAccJerk_mean_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAccJerk-mean()-Z** was changed to **fBodyAccJerk_mean_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyGyro-mean()-X** was changed to **fBodyGyro_mean_X**, and is in radians per second</p>
+<p>Original raw variable **fBodyGyro-mean()-Y** was changed to **fBodyGyro_mean_Y**, and is in radians per second</p>
+<p>Original raw variable **fBodyGyro-mean()-Z** was changed to **fBodyGyro_mean_Z**, and is in radians per second</p>
+<p>Original raw variable **fBodyAccMag-mean()** was changed to **fBodyAccMag_mean**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyBodyAccJerkMag-mean()** was changed to **fBodyBodyAccJerkMag_mean**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyBodyGyroMag-mean()** was changed to **fBodyBodyGyroMag_mean**, and is in radians per second</p>
+<p>Original raw variable **fBodyBodyGyroJerkMag-mean()** was changed to **fBodyBodyGyroJerkMag_mean**, and is in radians per second</p>
+<p>Original raw variable **tBodyAcc-std()-X** was changed to **tBodyAcc_std_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAcc-std()-Y** was changed to **tBodyAcc_std_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAcc-std()-Z** was changed to **tBodyAcc_std_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAcc-std()-X** was changed to **tGravityAcc_std_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAcc-std()-Y** was changed to **tGravityAcc_std_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAcc-std()-Z** was changed to **tGravityAcc_std_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerk-std()-X** was changed to **tBodyAccJerk_std_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerk-std()-Y** was changed to **tBodyAccJerk_std_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerk-std()-Z** was changed to **tBodyAccJerk_std_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyGyro-std()-X** was changed to **tBodyGyro_std_X**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyro-std()-Y** was changed to **tBodyGyro_std_Y**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyro-std()-Z** was changed to **tBodyGyro_std_Z**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerk-std()-X** was changed to **tBodyGyroJerk_std_X**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerk-std()-Y** was changed to **tBodyGyroJerk_std_Y**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerk-std()-Z** was changed to **tBodyGyroJerk_std_Z**, and is in radians per second</p>
+<p>Original raw variable **tBodyAccMag-std()** was changed to **tBodyAccMag_std**, and is in g, standard gravity units</p>
+<p>Original raw variable **tGravityAccMag-std()** was changed to **tGravityAccMag_std**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyAccJerkMag-std()** was changed to **tBodyAccJerkMag_std**, and is in g, standard gravity units</p>
+<p>Original raw variable **tBodyGyroMag-std()** was changed to **tBodyGyroMag_std**, and is in radians per second</p>
+<p>Original raw variable **tBodyGyroJerkMag-std()** was changed to **tBodyGyroJerkMag_std**, and is in radians per second</p>
+<p>Original raw variable **fBodyAcc-std()-X** was changed to **fBodyAcc_std_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAcc-std()-Y** was changed to **fBodyAcc_std_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAcc-std()-Z** was changed to **fBodyAcc_std_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAccJerk-std()-X** was changed to **fBodyAccJerk_std_X**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAccJerk-std()-Y** was changed to **fBodyAccJerk_std_Y**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyAccJerk-std()-Z** was changed to **fBodyAccJerk_std_Z**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyGyro-std()-X** was changed to **fBodyGyro_std_X**, and is in radians per second</p>
+<p>Original raw variable **fBodyGyro-std()-Y** was changed to **fBodyGyro_std_Y**, and is in radians per second</p>
+<p>Original raw variable **fBodyGyro-std()-Z** was changed to **fBodyGyro_std_Z**, and is in radians per second</p>
+<p>Original raw variable **fBodyAccMag-std()** was changed to **fBodyAccMag_std**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyBodyAccJerkMag-std()** was changed to **fBodyBodyAccJerkMag_std**, and is in g, standard gravity units</p>
+<p>Original raw variable **fBodyBodyGyroMag-std()** was changed to **fBodyBodyGyroMag_std**, and is in radians per second</p>
+<p>Original raw variable **fBodyBodyGyroJerkMag-std()** was changed to **fBodyBodyGyroJerkMag_std**, and is in radians per second</p>
 
  
 ###Variable 1 (repeat this section for all variables in the dataset)

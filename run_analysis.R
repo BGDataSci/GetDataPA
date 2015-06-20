@@ -1,97 +1,93 @@
-##copy the downloaded and unzipped data directory "UCI HAR Dataset" into your
-#working directory before running this script.  The raw data is read from there.
-#for convenience, the finished tidy data will be written to same directory.
-if(!require(data.table)) {
-        install.packages("data.table")
-}
+##Objective:
+#You should create one R script called run_analysis.R that does the following. 
+#1)Merges the training and the test sets to create one data set.
+#2)Extracts only the measurements on the mean and standard deviation for each measurement. 
+#3)Uses descriptive activity names to name the activities in the data set
+#4)Appropriately labels the data set with descriptive variable names. 
+#5)From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-if(!require(dplyr)) {
-        install.packages("dplyr")
-}
 
-labelFeatures<- read.table("./UCI HAR Dataset/features.txt")  ##Reads in the labels, as 
-#column 2 of the observations in X_train.txt and X_test.txt
+##To run this script, please copy the downloaded and unzipped data directory 
+#"UCI HAR Dataset" into your working directory before running this script.  
+#The raw data will be read from there when the directory is copied into your
+#working directory.
 
-labelFeatures$V2 <- gsub("\\(\\)", "",labelFeatures$V2)   #Remove, from the 
-#labels, special characters that may cause problems later: "()"
-labelFeatures$V2 <- gsub("-", "_",labelFeatures$V2)  ##Also replace hyphens
-#with underscores to prevent future problems with summarizing on field names.
-
-subj_id_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")  ##Reads in the 
-#Subject ID's for observations in X_test.txt
-
-act_lbls_test <- read.table("./UCI HAR Dataset/test/y_test.txt")  ##Reads in Activity type
-#observed for each obs in x_test.txt
-
-obs_x_test <- read.table("./UCI HAR Dataset/test/x_test.txt")  ##Reads in the 2947 obs of
-#x-test.txt
-
-colnames(obs_x_test) = labelFeatures[,2]  ##Assigns labels from column 2 to 
-#column names for for obs_x_test
-
-obs_w_id_act_test <- cbind(subj_id_test,act_lbls_test,obs_x_test)  ##Merge 
-#labeled obs with activity codes observed and Subject ID's for x_test.txt 
-#subject Id's for test set.
-
-names(obs_w_id_act_test)[1:2]<- c("subjectID", "Activity") ##Add descriptive 
-#names to the first two columns of the combined table.
-
-###Do the same thing with "train" set:
-
-subj_id_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
-
-act_lbls_train <- read.table("./UCI HAR Dataset/train/y_train.txt")
-
+#1)Merges the training and the test sets to create one data set.
+		##Read in the 2947 obs of x-test.txt	
+obs_x_test <- read.table("./UCI HAR Dataset/test/x_test.txt")  
+	##Reads in the Subject ID's for observations in X_test.txt
+subj_id_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")  
+	##Reads in Activity type observed for each observation in x_test.txt
+act_lbls_test <- read.table("./UCI HAR Dataset/test/y_test.txt")  
+	##Read in the 7352 obseravations of x-train.txt
 obs_x_train <- read.table("./UCI HAR Dataset/train/x_train.txt")
-
-colnames(obs_x_train) = labelFeatures[,2]  
-
+	##Reads in the Subject ID's for observations in X_train.txt		
+subj_id_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
+	##Reads in Activity type observed for each observation in x_train.txt
+act_lbls_train <- read.table("./UCI HAR Dataset/train/y_train.txt")
+	##Combine all the columns for test data
+obs_w_id_act_test <- cbind(subj_id_test,act_lbls_test,obs_x_test) 
+	##Combine all the columns for training data
 obs_w_id_act_train <- cbind(subj_id_train,act_lbls_train,obs_x_train)
+	##Combine all the rows from test data with all the rows of training data
+combined_data <- rbind(obs_w_id_act_train, obs_w_id_act_test)
 
-names(obs_w_id_act_train)[1:2]<- c("subjectID", "Activity")  ##Add descriptive
-#names to the first two columns.
 
-####Here we combine the two sets of data.
-combined_data <- rbind(obs_w_id_act_train, obs_w_id_act_test)  ##Combine the two 
-#datasets
+#4)Appropriately labels the data set with descriptive variable names.
+	##Read in the file with original descriptive column names for both data sets.
+labelFeatures<- read.table("./UCI HAR Dataset/features.txt")  
+	
+	##Remove characters from the data set feature names that may cause problems.
+	#Remove, from the column labels, special characters that may cause problems later: "()"
+	labelFeatures$V2 <- gsub("\\(\\)", "",labelFeatures$V2)   
+	##Also replace hyphens with underscores to prevent future problems with summarizing on field names.
+labelFeatures$V2 <- gsub("-", "_",labelFeatures$V2)
+	##Apply labels to the appropriate columns
+colnames(combined_data)[3:(length(labelFeatures[,2]) + 2)] = labelFeatures[,2]
+        ##Apply Descriptive names to the first two columns
+colnames(combined_data)[1:2]<- c("subjectID", "Activity")
 
-library(tidyr) ##load library tidyr to help tidy the data
 
-col_bandsEnergy <- grep("bandsEnergy",names(combined_data))  ##Identify columns
-#containing "bandsEnergy" which have duplicate columnn names and can be elimi-
-#nated because they are not part of the dataset we are interested in.
+#2)Extracts only the measurements on the mean and standard deviation for each measurement.
+	##Subset the data for features named BandsEngergy because they contain 
+	#duplicate column names which obstruct our analysis and do not contains mean()
+	#or std() which we are looking for.
+col_bandsEnergy <- grep("bandsEnergy",names(combined_data))
+	#take out the data causing problems
+comb_data_86bandsE <- combined_data[,-1 * col_bandsEnergy]
+	##Select columns we do want. We don't include columns with "Mean", e.g. 
+	#"angle(tBodyAccJerkMean),gravityMean)" because these are all angles and not 
+	#mean measurements. Decided to leave out "meanFreq()" components because this 
+	#function was a weighted average of frequency components only and not the 
+	#same as mean(). Otherwise data would have 81 columns instead of 68.
 
-comb_data_86bandsE <- combined_data[,-1 * col_bandsEnergy]   ##Select all the
-#columns that do not contain "bandsEnergy".
+library(dplyr) ##load library dplyr to easily select only target data
 
 tidy_data1 <- select(comb_data_86bandsE, subjectID, Activity, contains("_mean"),
-                     contains("_std"), -contains("meanFreq"))  ##Select columns we do want
-##We don't include columns with "Mean", e.g. "angle(tBodyAccJerkMean),gravityMean)"
-#because these are all angles and not mean measurements. Decided to leave out 
-#meanFreq components because this function was a weighted average of frequency
-#components only and not the same as mean(). Otherwise data would have 81 columns
-#wide instead of 68.
+                     contains("_std"), -contains("meanFreq"))  
+					 
+#3)Uses descriptive activity names to name the activities in the data set
 
-### Read in the Labels for Activity Codes to data frame.
+	### Read in the Labels for Activity Codes to data frame.
 labelActivites<- read.table("./UCI HAR Dataset/activity_labels.txt")
-
+	##Replace Activity Codes (1:6) with their descriptive labels.
 tidy_data1$Activity <- labelActivites[,2][match(tidy_data1$Activity, 
-                                                labelActivites[,1])]  ##Replace
-#Activity Codes (1:6) with their descriptive labels.
-
-
-###ColMeans 0.274347261 Mean   : 0.2743
-
-
-write.table(tidy_data1,"./UCI HAR Dataset/project_tidydata_means_stds")  ##rite to file
-#the tidy data set complete through step 4.
-
-gbSubjACtvty <- group_by(tidy_data1,subjectID,Activity)  ##Groups by Subject 
+                                                labelActivites[,1])] 
+	####Write to file the tidy data set complete from setp 1 through step 4.									
+write.table(tidy_data1,"./project_tidydata_means_stds")  	
+												
+#5)From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+	##Groups by Subject and Activity to create the data set for step 5.				 
+gbSubjActvty <- group_by(tidy_data1, subjectID, Activity)  ##Groups by Subject 
 #and Activity to create the data set for step 5.
+	##create a tidy table with the mean for each variable summarized by Subject 
+	#and Activity combinations.  Step 5.
+sum_gbSubjActvty <- summarise_each(gbSubjActvty, funs(mean), -subjectID, -Activity)
 
-sum_gbSubjActvty <- summarise_each(gbSubjACtvty, funs(mean), -subjectID,-Activity)
-##created a tidy table with the mean for each variable summarized by Subject
-#and Activity combinations.  Step 5.
+	##write to file named "project_tidydata_summary.txt" the tidy data set from 
+	#step 5.  Submission instructions indicate use "row.name=FALSE" 				 
+write.table(sum_gbSubjActvty,"./project_tidydata_summary.txt",row.name=FALSE)  
+					 
 
-write.table(sum_gbSubjActvty,"./UCI HAR Dataset/project_tidydata_summary")  ##rite to file
-#the tidy data set from step 5.
+
+
